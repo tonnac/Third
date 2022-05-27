@@ -26,8 +26,6 @@ public:
 	void SetCharacter(AThirdCharacter* ThirdCharacter);
 	UFUNCTION()
 	void OnMontageEnd(UAnimMontage* Montage, bool bInterrupted);
-
-	void OnMontageEnd();
 	
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnMontageEndedMCDelegate, UAnimMontage*, Montage, bool, bInterrupted);
 public:
@@ -35,11 +33,6 @@ public:
 	TWeakObjectPtr<USkeletalMeshComponent> SkeletalMeshComponent = nullptr;
 	TWeakObjectPtr<UAnimSingleNodeInstance> AnimInstance = nullptr;
 	TWeakObjectPtr<UAnimMontage> CreatedMontage = nullptr;
-	
-	FTimerHandle TimerHandle;
-
-	UPROPERTY(EditAnywhere)
-	float DecreaseTime = 0.f;
 
 	UPROPERTY(meta=(BindWidget))
 	UButton* PlayButton = nullptr;

@@ -25,17 +25,7 @@ void UMyHud::OnClicked_Button()
 	}
 	else
 	{
-		const float SequenceLength = AnimMontage->SequenceLength;
-		if (GetWorld() && SequenceLength > 0.f)
-		{
-			FTimerManager& TimerManager = GetWorld()->GetTimerManager();
-			if (TimerHandle.IsValid())
-			{
-				TimerManager.ClearTimer(TimerHandle);
-			}
-			TimerManager.SetTimer(TimerHandle, FTimerDelegate::CreateUObject(this, &UMyHud::OnMontageEnd), SequenceLength - DecreaseTime, false);
-			SkeletalMeshComponent->PlayAnimation(AnimMontage, false);
-		}
+		SkeletalMeshComponent->PlayAnimation(AnimMontage, false);
 	}
 }
 
@@ -61,14 +51,8 @@ void UMyHud::OnMontageEnd(UAnimMontage* Montage, bool bInterrupted)
 	{
 		// SkeletalMeshComponent->PlayAnimation(AnimSequence, true);
 	}
-}
-
-void UMyHud::OnMontageEnd()
-{
-	if (SkeletalMeshComponent.IsValid())
+	else
 	{
-		// SkeletalMeshComponent->PlayAnimation(AnimSequence, true);
-		
 		CreatedMontage = AnimInstance->PlaySlotAnimationAsDynamicMontage(AnimSequence, FAnimSlotGroup::DefaultSlotName, 0.25f, 0.25f, 1, TNumericLimits<int32>::Max());
 	}
 }
