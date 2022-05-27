@@ -27,7 +27,6 @@ public:
 	UFUNCTION()
 	void OnMontageEnd(UAnimMontage* Montage, bool bInterrupted);
 	
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnMontageEndedMCDelegate, UAnimMontage*, Montage, bool, bInterrupted);
 public:
 	TWeakObjectPtr<AThirdCharacter> Character = nullptr;
 	TWeakObjectPtr<USkeletalMeshComponent> SkeletalMeshComponent = nullptr;
